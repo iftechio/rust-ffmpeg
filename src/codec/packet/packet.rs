@@ -269,7 +269,7 @@ impl Clone for Packet {
             av_packet_ref(&mut self.0, &source.0);
             av_packet_make_writable(&mut self.0);
         }
-        #[cfg(not(feature = "ffmpeg_4_0"))]
+        #[cfg(not(any(feature = "ffmpeg_4_0", feature = "ffmpeg_5_0")))]
         unsafe {
             av_copy_packet(&mut self.0, &source.0);
         }

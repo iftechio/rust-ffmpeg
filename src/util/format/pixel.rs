@@ -539,7 +539,7 @@ impl From<AVPixelFormat> for Pixel {
             AV_PIX_FMT_YUV444P10LE => Pixel::YUV444P10LE,
             AV_PIX_FMT_YUV422P9BE => Pixel::YUV422P9BE,
             AV_PIX_FMT_YUV422P9LE => Pixel::YUV422P9LE,
-            #[cfg(not(feature = "ffmpeg_4_0"))]
+            #[cfg(not(any(feature = "ffmpeg_4_0", feature = "ffmpeg_5_0")))]
             AV_PIX_FMT_VDA_VLD => Pixel::VDA_VLD,
 
             AV_PIX_FMT_GBRP => Pixel::GBRP,

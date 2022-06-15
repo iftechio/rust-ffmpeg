@@ -21,7 +21,7 @@ pub enum Primaries {
     SMPTE428,
     SMPTE431,
     SMPTE432,
-    #[cfg(not(feature = "ffmpeg_4_3"))]
+    #[cfg(not(any(feature = "ffmpeg_4_3", feature = "ffmpeg_5_0")))] 
     JEDEC_P22,
     #[cfg(feature = "ffmpeg_4_3")]
     EBU3213,
@@ -62,7 +62,7 @@ impl From<AVColorPrimaries> for Primaries {
             AVCOL_PRI_SMPTE428 => Primaries::SMPTE428,
             AVCOL_PRI_SMPTE431 => Primaries::SMPTE431,
             AVCOL_PRI_SMPTE432 => Primaries::SMPTE432,
-            #[cfg(not(feature = "ffmpeg_4_3"))]
+            #[cfg(not(any(feature = "ffmpeg_4_3", feature = "ffmpeg_5_0")))]
             AVCOL_PRI_JEDEC_P22 => Primaries::JEDEC_P22,
             #[cfg(feature = "ffmpeg_4_3")]
             AVCOL_PRI_EBU3213 => Primaries::EBU3213,
@@ -88,7 +88,7 @@ impl From<Primaries> for AVColorPrimaries {
             Primaries::SMPTE428 => AVCOL_PRI_SMPTE428,
             Primaries::SMPTE431 => AVCOL_PRI_SMPTE431,
             Primaries::SMPTE432 => AVCOL_PRI_SMPTE432,
-            #[cfg(not(feature = "ffmpeg_4_3"))]
+            #[cfg(not(any(feature = "ffmpeg_4_3", feature = "ffmpeg_5_0")))] 
             Primaries::JEDEC_P22 => AVCOL_PRI_JEDEC_P22,
             #[cfg(feature = "ffmpeg_4_3")]
             Primaries::EBU3213 => AVCOL_PRI_EBU3213,
