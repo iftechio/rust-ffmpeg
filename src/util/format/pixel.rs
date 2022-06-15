@@ -584,7 +584,7 @@ impl From<AVPixelFormat> for Pixel {
 
             AV_PIX_FMT_YVYU422 => Pixel::YVYU422,
 
-            #[cfg(not(feature = "ffmpeg_4_0"))]
+            #[cfg(not(any(feature = "ffmpeg_4_0", feature = "ffmpeg_5_0")))]
             AV_PIX_FMT_VDA => Pixel::VDA,
 
             AV_PIX_FMT_YA16BE => Pixel::YA16BE,
@@ -855,7 +855,7 @@ impl From<Pixel> for AVPixelFormat {
             Pixel::YUV444P10LE => AV_PIX_FMT_YUV444P10LE,
             Pixel::YUV422P9BE => AV_PIX_FMT_YUV422P9BE,
             Pixel::YUV422P9LE => AV_PIX_FMT_YUV422P9LE,
-            #[cfg(not(feature = "ffmpeg_4_0"))]
+            #[cfg(not(any(feature = "ffmpeg_4_0", feature = "ffmpeg_5_0")))]
             Pixel::VDA_VLD => AV_PIX_FMT_VDA_VLD,
 
             Pixel::GBRP => AV_PIX_FMT_GBRP,
@@ -900,7 +900,7 @@ impl From<Pixel> for AVPixelFormat {
 
             Pixel::YVYU422 => AV_PIX_FMT_YVYU422,
 
-            #[cfg(not(feature = "ffmpeg_4_0"))]
+            #[cfg(not(any(feature = "ffmpeg_4_0", feature = "ffmpeg_5_0")))]
             Pixel::VDA => AV_PIX_FMT_VDA,
 
             Pixel::YA16BE => AV_PIX_FMT_YA16BE,
