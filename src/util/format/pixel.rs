@@ -948,9 +948,6 @@ impl From<Pixel> for AVPixelFormat {
             Pixel::VIDEOTOOLBOX => AV_PIX_FMT_VIDEOTOOLBOX,
 
             // --- defaults
-            #[cfg(not(feature = "ff_api_xvmc"))]
-            Pixel::XVMC => AV_PIX_FMT_XVMC,
-
             Pixel::RGB32 => AV_PIX_FMT_RGB32,
             Pixel::RGB32_1 => AV_PIX_FMT_RGB32_1,
             Pixel::BGR32 => AV_PIX_FMT_BGR32,
