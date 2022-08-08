@@ -25,10 +25,6 @@ pub enum Pixel {
     YUVJ420P,
     YUVJ422P,
     YUVJ444P,
-    #[cfg(feature = "ff_api_xvmc")]
-    XVMC_MPEG2_MC,
-    #[cfg(feature = "ff_api_xvmc")]
-    XVMC_MPEG2_IDCT,
     UYVY422,
     UYYVYY411,
     BGR8,
@@ -394,8 +390,6 @@ impl Pixel {
     pub const Y400A: Pixel = Pixel::YA8;
     pub const GRAY8A: Pixel = Pixel::YA8;
     pub const GBR24P: Pixel = Pixel::GBRP;
-    #[cfg(feature = "ff_api_xvmc")]
-    pub const XVMC: Pixel = Pixel::XVMC_MPEG2_IDCT;
 
     pub fn descriptor(self) -> Option<Descriptor> {
         unsafe {
@@ -449,12 +443,6 @@ impl From<AVPixelFormat> for Pixel {
             AV_PIX_FMT_YUVJ420P => Pixel::YUVJ420P,
             AV_PIX_FMT_YUVJ422P => Pixel::YUVJ422P,
             AV_PIX_FMT_YUVJ444P => Pixel::YUVJ444P,
-            #[cfg(not(feature = "ff_api_xvmc"))]
-            AV_PIX_FMT_XVMC => Pixel::XVMC,
-            #[cfg(feature = "ff_api_xvmc")]
-            AV_PIX_FMT_XVMC_MPEG2_MC => Pixel::XVMC_MPEG2_MC,
-            #[cfg(feature = "ff_api_xvmc")]
-            AV_PIX_FMT_XVMC_MPEG2_IDCT => Pixel::XVMC_MPEG2_IDCT,
             AV_PIX_FMT_UYVY422 => Pixel::UYVY422,
             AV_PIX_FMT_UYYVYY411 => Pixel::UYYVYY411,
             AV_PIX_FMT_BGR8 => Pixel::BGR8,
@@ -767,10 +755,6 @@ impl From<Pixel> for AVPixelFormat {
             Pixel::YUVJ420P => AV_PIX_FMT_YUVJ420P,
             Pixel::YUVJ422P => AV_PIX_FMT_YUVJ422P,
             Pixel::YUVJ444P => AV_PIX_FMT_YUVJ444P,
-            #[cfg(feature = "ff_api_xvmc")]
-            Pixel::XVMC_MPEG2_MC => AV_PIX_FMT_XVMC_MPEG2_MC,
-            #[cfg(feature = "ff_api_xvmc")]
-            Pixel::XVMC_MPEG2_IDCT => AV_PIX_FMT_XVMC_MPEG2_IDCT,
             Pixel::UYVY422 => AV_PIX_FMT_UYVY422,
             Pixel::UYYVYY411 => AV_PIX_FMT_UYYVYY411,
             Pixel::BGR8 => AV_PIX_FMT_BGR8,

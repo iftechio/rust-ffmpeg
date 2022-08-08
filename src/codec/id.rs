@@ -13,8 +13,6 @@ pub enum Id {
     // video codecs
     MPEG1VIDEO,
     MPEG2VIDEO,
-    #[cfg(feature = "ff_api_xvmc")]
-    MPEG2VIDEO_XVMC,
     H261,
     H263,
     RV10,
@@ -602,6 +600,18 @@ pub enum Id {
     ADPCM_IMA_ACORN,
     #[cfg(feature = "ffmpeg_5_0")]
     MSNSIREN,
+
+    #[cfg(feature = "ffmpeg_5_0")]
+    VBN,
+    #[cfg(feature = "ffmpeg_5_0")]
+    QOI,
+    #[cfg(feature = "ffmpeg_5_0")]
+    JPEGXL,
+
+    #[cfg(feature = "ffmpeg_5_0")]
+    PHM,
+    #[cfg(feature = "ffmpeg_5_0")]
+    DFPWM,
 }
 
 impl Id {
@@ -625,8 +635,6 @@ impl From<AVCodecID> for Id {
             /* video codecs */
             AV_CODEC_ID_MPEG1VIDEO => Id::MPEG1VIDEO,
             AV_CODEC_ID_MPEG2VIDEO => Id::MPEG2VIDEO,
-            #[cfg(feature = "ff_api_xvmc")]
-            AV_CODEC_ID_MPEG2VIDEO_XVMC => Id::MPEG2VIDEO_XVMC,
             AV_CODEC_ID_H261 => Id::H261,
             AV_CODEC_ID_H263 => Id::H263,
             AV_CODEC_ID_RV10 => Id::RV10,
@@ -928,6 +936,13 @@ impl From<AVCodecID> for Id {
             AV_CODEC_ID_RA_144 => Id::RA_144,
             AV_CODEC_ID_RA_288 => Id::RA_288,
 
+            /* ffmpeg 5.0 */
+            AV_CODEC_ID_VBN => Id::VBN,
+            AV_CODEC_ID_JPEGXL => Id::JPEGXL,
+            AV_CODEC_ID_QOI => Id::QOI,
+            AV_CODEC_ID_PHM => Id::PHM,
+            AV_CODEC_ID_DFPWM => Id::DFPWM,
+
             /* various DPCM codecs */
             AV_CODEC_ID_ROQ_DPCM => Id::ROQ_DPCM,
             AV_CODEC_ID_INTERPLAY_DPCM => Id::INTERPLAY_DPCM,
@@ -1223,8 +1238,6 @@ impl From<Id> for AVCodecID {
             /* video codecs */
             Id::MPEG1VIDEO => AV_CODEC_ID_MPEG1VIDEO,
             Id::MPEG2VIDEO => AV_CODEC_ID_MPEG2VIDEO,
-            #[cfg(feature = "ff_api_xvmc")]
-            Id::MPEG2VIDEO_XVMC => AV_CODEC_ID_MPEG2VIDEO_XVMC,
             Id::H261 => AV_CODEC_ID_H261,
             Id::H263 => AV_CODEC_ID_H263,
             Id::RV10 => AV_CODEC_ID_RV10,
@@ -1812,6 +1825,16 @@ impl From<Id> for AVCodecID {
             Id::ADPCM_IMA_ACORN => AV_CODEC_ID_ADPCM_IMA_ACORN,
             #[cfg(feature = "ffmpeg_5_0")]
             Id::MSNSIREN => AV_CODEC_ID_MSNSIREN,
+            #[cfg(feature = "ffmpeg_5_0")]
+            Id::JPEGXL => AV_CODEC_ID_JPEGXL,
+            #[cfg(feature = "ffmpeg_5_0")]
+            Id::VBN => AV_CODEC_ID_VBN,
+            #[cfg(feature = "ffmpeg_5_0")]
+            Id::QOI => AV_CODEC_ID_QOI,
+            #[cfg(feature = "ffmpeg_5_0")]
+            Id::PHM => AV_CODEC_ID_PHM,
+            #[cfg(feature = "ffmpeg_5_0")]
+            Id::DFPWM => AV_CODEC_ID_DFPWM,
         }
     }
 }
