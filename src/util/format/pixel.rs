@@ -218,9 +218,6 @@ pub enum Pixel {
     VIDEOTOOLBOX,
 
     // --- defaults
-    #[cfg(not(feature = "ff_api_xvmc"))]
-    XVMC,
-
     RGB32,
     RGB32_1,
     BGR32,
