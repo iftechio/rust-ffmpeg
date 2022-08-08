@@ -114,4 +114,4 @@ optional = true
 
 [dependencies.ffmpeg-sys-next]
 git = "https://github.com/iftechio/rust-ffmpeg-sys.git"
-branch = "master"
+rev = "1fdb693866b037c7431e7f95bd4b71c47f596f0a"
