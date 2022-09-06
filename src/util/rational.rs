@@ -1,4 +1,5 @@
 use std::cmp::Ordering;
+use std::convert::TryInto;
 use std::fmt;
 use std::ops::{Add, Div, Mul, Sub};
 
@@ -6,16 +7,16 @@ use ffi::*;
 use libc::c_int;
 
 #[derive(Copy, Clone)]
-pub struct Rational(pub i32, pub i32);
+pub struct Rational(pub i64, pub i32);
 
 impl Rational {
     #[inline]
-    pub fn new(numerator: i32, denominator: i32) -> Self {
+    pub fn new(numerator: i64, denominator: i32) -> Self {
         Rational(numerator, denominator)
     }
 
     #[inline]
-    pub fn numerator(&self) -> i32 {
+    pub fn numerator(&self) -> i64 {
         self.0
     }
 
@@ -47,9 +48,9 @@ impl Rational {
             );
 
             if exact == 1 {
-                Ok(Rational(dst_num, dst_den))
+                Ok(Rational(dst_num.into(), dst_den))
             } else {
-                Err(Rational(dst_num, dst_den))
+                Err(Rational(dst_num.into(), dst_den))
             }
         }
     }
@@ -63,7 +64,7 @@ impl Rational {
 impl From<AVRational> for Rational {
     #[inline]
     fn from(value: AVRational) -> Rational {
-        Rational(value.num, value.den)
+        Rational(value.num.into(), value.den)
     }
 }
 
@@ -71,7 +72,7 @@ impl From<Rational> for AVRational {
     #[inline]
     fn from(value: Rational) -> AVRational {
         AVRational {
-            num: value.0,
+            num: value.0.try_into().unwrap(),
             den: value.1,
         }
     }
@@ -98,8 +99,8 @@ impl From<Rational> for u32 {
     }
 }
 
-impl From<(i32, i32)> for Rational {
-    fn from((num, den): (i32, i32)) -> Rational {
+impl From<(i64, i32)> for Rational {
+    fn from((num, den): (i64, i32)) -> Rational {
         Rational::new(num, den)
     }
 }
