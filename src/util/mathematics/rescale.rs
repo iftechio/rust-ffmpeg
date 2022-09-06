@@ -1,7 +1,7 @@
 use ffi::*;
 use {Rational, Rounding};
 
-pub const TIME_BASE: Rational = Rational(AV_TIME_BASE_Q.num, AV_TIME_BASE_Q.den);
+pub const TIME_BASE: Rational = Rational(AV_TIME_BASE_Q.num as i64, AV_TIME_BASE_Q.den);
 
 pub trait Rescale {
     fn rescale<S, D>(&self, source: S, destination: D) -> i64
